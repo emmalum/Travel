@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @State public var isStartButtonEnabled: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Label("Settings", systemImage: "")
+                .foregroundStyle(.green)
+                .font(.title)
+            Spacer()
+        }
+    }
+}
+    
+#Preview {
+    NavigationStack {
+        SettingsView()
     }
 }
 
-#Preview {
-    SettingsView()
-}
