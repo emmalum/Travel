@@ -24,4 +24,3 @@ struct SettingsView: View {
         SettingsView()
     }
 }
-
