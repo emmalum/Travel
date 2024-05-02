@@ -11,6 +11,8 @@
 		2E4C1AE02BE0988500DAF0FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C1ADF2BE0988500DAF0FC /* ContentView.swift */; };
 		2E4C1AE22BE0988700DAF0FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */; };
 		2E4C1AE52BE0988700DAF0FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4C1AE42BE0988700DAF0FC /* Preview Assets.xcassets */; };
+		2EFEA81E2BE3432A0062357A /* TrainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEA81D2BE3432A0062357A /* TrainViewModel.swift */; };
+		2EFEA8202BE345960062357A /* Train.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEA81F2BE345960062357A /* Train.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E4C1AE42BE0988700DAF0FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2E4C1AEB2BE32CE800DAF0FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2EFEA81D2BE3432A0062357A /* TrainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewModel.swift; sourceTree = "<group>"; };
+		2EFEA81F2BE345960062357A /* Train.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Train.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +57,10 @@
 			isa = PBXGroup;
 			children = (
 				2E4C1AEB2BE32CE800DAF0FC /* Info.plist */,
-				2E4C1ADD2BE0988500DAF0FC /* TravelApp.swift */,
 				2E4C1ADF2BE0988500DAF0FC /* ContentView.swift */,
+				2E4C1ADD2BE0988500DAF0FC /* TravelApp.swift */,
+				2EFEA81F2BE345960062357A /* Train.swift */,
+				2EFEA81D2BE3432A0062357A /* TrainViewModel.swift */,
 				2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */,
 				2E4C1AE32BE0988700DAF0FC /* Preview Content */,
 			);
@@ -139,6 +145,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EFEA8202BE345960062357A /* Train.swift in Sources */,
+				2EFEA81E2BE3432A0062357A /* TrainViewModel.swift in Sources */,
 				2E4C1AE02BE0988500DAF0FC /* ContentView.swift in Sources */,
 				2E4C1ADE2BE0988500DAF0FC /* TravelApp.swift in Sources */,
 			);

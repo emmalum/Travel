@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var trainVM = TrainViewModel()
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -15,7 +16,9 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
         }
-        .padding()
+        .task{
+            await trainVM.getData()
+        }
     }
 }
 
