@@ -49,15 +49,15 @@ struct LoadingView: View {
             }
         }
         // Below works correctly, but it gives a dreprecation warning
-        //.background(
-            //NavigationLink(
-                //destination: SettingsView(),
-                //isActive: $isLoaded,
-                //label: {
-                    //EmptyView()
-                //}
-            //).hidden()
-        //)
+        .background(
+            NavigationLink(
+                destination: SettingsView(),
+                isActive: $isLoaded,
+                label: {
+                    EmptyView()
+                }
+            ).hidden()
+        )
     }
 }
 
