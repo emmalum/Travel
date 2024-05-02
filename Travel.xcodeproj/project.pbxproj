@@ -11,6 +11,7 @@
 		2E4C1AE02BE0988500DAF0FC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4C1ADF2BE0988500DAF0FC /* ContentView.swift */; };
 		2E4C1AE22BE0988700DAF0FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */; };
 		2E4C1AE52BE0988700DAF0FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4C1AE42BE0988700DAF0FC /* Preview Assets.xcassets */; };
+		9B4BC3B42BE3489E005D03D6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4BC3B32BE3489E005D03D6 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		2E4C1ADF2BE0988500DAF0FC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E4C1AE42BE0988700DAF0FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9B4BC3B32BE3489E005D03D6 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				2E4C1ADD2BE0988500DAF0FC /* TravelApp.swift */,
 				2E4C1ADF2BE0988500DAF0FC /* ContentView.swift */,
+				9B4BC3B32BE3489E005D03D6 /* SettingsView.swift */,
 				2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */,
 				2E4C1AE32BE0988700DAF0FC /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B4BC3B42BE3489E005D03D6 /* SettingsView.swift in Sources */,
 				2E4C1AE02BE0988500DAF0FC /* ContentView.swift in Sources */,
 				2E4C1ADE2BE0988500DAF0FC /* TravelApp.swift in Sources */,
 			);
