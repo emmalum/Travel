@@ -9,8 +9,6 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @State public var isStartButtonEnabled: Bool = false
-    
     var body: some View {
         VStack{
             Label("Settings", systemImage: "")

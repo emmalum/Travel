@@ -17,6 +17,7 @@ struct LoadingView: View {
                 .font(.title)
                 .padding()
             
+            // This is the 3 dots that will animate on the loading screen
             HStack {
                 Circle()
                     .foregroundColor(isAnimating ? .red: .gray)
@@ -29,7 +30,7 @@ struct LoadingView: View {
                     .frame(width: 10, height: 10)
             }
             
-            // Doesn't work?
+            // Alternate navigation for loading a new view, but it doesn't work?
             if isLoaded{
                 NavigationLink(
                     destination: SettingsView(),
@@ -38,12 +39,13 @@ struct LoadingView: View {
                     }
                 )
             }
-            
         }
         .onAppear{
+            // Animates the 3 dots by making them change colours every 1 second.
             withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()){
                 self.isAnimating.toggle()
             }
+            // When 10 seconds have past, load the next screen. (Sets the isLoaded to true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 10){
                 self.isLoaded = true
             }
