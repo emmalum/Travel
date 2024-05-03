@@ -9,21 +9,23 @@ import Foundation
 
 @Observable
 class TrainTransitAPI {
-    var train: Train?
+
     var urlString: URL = URL(string: "https://api.transport.nsw.gov.au/v1/tp/trip")!
+
+    let APIKey: String = "apikey eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
+    let APIHeader: [String: String]
     
-    let apiHeader: [String: String]
-    let apiKey: String = "apikey eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
+    var currentTransitRequest: TransitRequest?
     
     init() {
-        self.apiHeader = [
+        self.APIHeader = [
             "accept": "application/json",
-            "authorization": apiKey,
+            "authorization": APIKey,
         ]
     }
     
     func getData(currentDate: Date, origin:String, destination:String) {
-        let tripApiParams = TripApiParams(date: currentDate, origin: origin, destination: destination)
+        let tripApiParams = TripAPIParams(date: currentDate, origin: origin, destination: destination)
         var urlComponents = URLComponents(url: urlString, resolvingAgainstBaseURL: false)
         urlComponents?.queryItems = tripApiParams.toURLQuery()
         
@@ -35,7 +37,7 @@ class TrainTransitAPI {
         //set up request
         var request = URLRequest(url: modifiedURL)
         request.httpMethod = "GET"
-        request.allHTTPHeaderFields = apiHeader
+        request.allHTTPHeaderFields = APIHeader
         
         //prepare to preform request
         let task = URLSession.shared.dataTask(with: request) {
@@ -48,12 +50,14 @@ class TrainTransitAPI {
         task.resume()
     
     }
+    
+    //for first decodable
     func parseJSON(data: Data){
         let decoder = JSONDecoder()
         do {
-            let decodedData = try decoder.decode(Train.self, from: data)
+            let decodedData = try decoder.decode(TransitRequest.self, from: data)
             print(decodedData)
-            self.train = decodedData
+            self.currentTransitRequest = decodedData
         }catch {
             print(error)
         }
@@ -63,7 +67,7 @@ class TrainTransitAPI {
 
 //arguments for the api to set up queries
 //preset with defaults(4.3 example)
-struct TripApiParams {
+struct TripAPIParams {
     var outputFormat: String = "rapidJSON"
     var coordOutputFormat: String = "EPSG:4326"
     var depArrMacro: String = "dep"
@@ -83,7 +87,7 @@ struct TripApiParams {
         self.name_destination = destination
     }
     
-    //formatting for api call
+    //formatting for API call
     func toURLQuery() -> [URLQueryItem] {
         var queries: [URLQueryItem] = []
         queries.append(URLQueryItem(name: "outputFormat", value: outputFormat))
