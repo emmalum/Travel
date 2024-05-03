@@ -20,10 +20,10 @@ struct ButtonView: View {
         Button {
             button.toggle()
             if var1 != nil {
-                var2 = "something"
+                var2 = "origin"
             }
             else {
-                var1 = "something"
+                var1 = "destination"
             }
         } label: {
             Text("Hello World")
@@ -33,10 +33,10 @@ struct ButtonView: View {
         Button {
             button2.toggle()
             if var1 != nil {
-                var2 = "else"
+                var2 = "origin"
             }
             else {
-                var1 = "else"
+                var1 = "destination"
             }
         } label: {
             Text("Hello World")
