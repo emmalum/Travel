@@ -7,32 +7,95 @@
 
 import Foundation
 
-@MainActor
-
-class TrainViewModel: ObservableObject{
-    @Published var train = Train()
-    var urlString = "https://opendata.transport.nsw.gov.au/dataset/66b02f02-9d8e-4bb9-9ac7-0c84d3f0b72c/resource/d5fa0a43-9db6-4e41-aa9b-98f26837d31a/download/transport-route_2.yaml"
+@Observable
+class TrainViewModel {
+    var train: Train?
+    var urlString: URL = URL(string: "https://api.transport.nsw.gov.au/v1/tp/trip")!
     
-    func getData() async {
-        print("🐥 We are accessing the url \(urlString)")
+    let apiHeader: [String: String]
+    let apiKey: String = "apikey eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
+    
+    init() {
+        self.apiHeader = [
+            "accept": "application/json",
+            "authorization": apiKey,
+        ]
+    }
+    
+    func getData(currentDate: Date, origin:String, destination:String) {
+        let tripApiParams = TripApiParams(date: currentDate, origin: origin, destination: destination)
+        var urlComponents = URLComponents(url: urlString, resolvingAgainstBaseURL: false)
+        urlComponents?.queryItems = tripApiParams.toURLQuery()
         
-        //convert url string to ios url type
-        guard let url = URL(string: urlString) else {
-            print("ERROR could not convert \(urlString) to a URL")
+        guard let modifiedURL = urlComponents?.url else{
+            print("Failed to create url")
             return
         }
-        do {
-            let (data, _ ) = try await URLSession.shared.data(from: url)
-            do{
-                train = try JSONDecoder().decode(Train.self, from: data)
-                print("my_timetable_route_name: \(train.my_timetable_route_name)")
-                print("route_type: \(train.route_type)")
-                
-            } catch{
-            print("JSON ERRORL: Could not decode JSON data. \(error.localizedDescription)")
+        
+        //set up request
+        var request = URLRequest(url: modifiedURL)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = apiHeader
+        
+        //prepare to preform request
+        let task = URLSession.shared.dataTask(with: request) {
+            data, response, error in
+            if let safeData = data {
+                self.parseJSON(data: safeData)
             }
-        } catch {
-            print("ERROR could not get data from URL: \(urlString). \(error.localizedDescription)")
         }
+        
+        task.resume()
+    
+    }
+    func parseJSON(data: Data){
+        let decoder = JSONDecoder()
+        do {
+            let decodedData = try decoder.decode(Train.self, from: data)
+            print(decodedData)
+            self.train = decodedData
+        }catch {
+            print(error)
+        }
+    }
+    
+}
+
+//arguments for the api to set up queries
+//preset with defaults(4.3 example)
+struct TripApiParams {
+    var outputFormat: String = "rapidJSON"
+    var coordOutputFormat: String = "EPSG:4326"
+    var depArrMacro: String = "dep"
+    var itdDate: String
+    var itdTime: String
+    var type_origin = "stop"
+    var name_origin: String
+    var type_destination: String = "stop"
+    var name_destination: String
+    var TfNSWTR: Bool = true;
+    
+    //initialising the TripAPIParams - by making it in object
+    init(date: Date, origin: String, destination: String) {
+        self.itdDate = DateFormatter().currentDate.string(from: date)
+        self.itdTime = DateFormatter().currentTime.string(from: date)
+        self.name_origin = origin
+        self.name_destination = destination
+    }
+    
+    //formatting for api call
+    func toURLQuery() -> [URLQueryItem] {
+        var queries: [URLQueryItem] = []
+        queries.append(URLQueryItem(name: "outputFormat", value: outputFormat))
+        queries.append(URLQueryItem(name: "coordOutputFormat", value: coordOutputFormat))
+        queries.append(URLQueryItem(name: "depArrMacro", value: depArrMacro))
+        queries.append(URLQueryItem(name: "itdDate", value: itdDate))
+        queries.append(URLQueryItem(name: "itdTime", value: itdTime))
+        queries.append(URLQueryItem(name: "type_origin", value: type_origin))
+        queries.append(URLQueryItem(name: "name_origin", value: name_origin))
+        queries.append(URLQueryItem(name: "type_destination", value: type_destination))
+        queries.append(URLQueryItem(name: "name_destination", value: name_destination))
+        queries.append(URLQueryItem(name: "TfNSWTR", value: String(TfNSWTR)))
+        return queries
     }
 }

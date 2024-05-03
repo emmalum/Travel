@@ -13,6 +13,8 @@
 		2E4C1AE52BE0988700DAF0FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4C1AE42BE0988700DAF0FC /* Preview Assets.xcassets */; };
 		2EFEA81E2BE3432A0062357A /* TrainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEA81D2BE3432A0062357A /* TrainViewModel.swift */; };
 		2EFEA8202BE345960062357A /* Train.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEA81F2BE345960062357A /* Train.swift */; };
+		2EFEA8222BE467560062357A /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEA8212BE467560062357A /* DateFormatter.swift */; };
+		2EFEA8242BE468110062357A /* Decodables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEA8232BE468110062357A /* Decodables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		2E4C1AEB2BE32CE800DAF0FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2EFEA81D2BE3432A0062357A /* TrainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewModel.swift; sourceTree = "<group>"; };
 		2EFEA81F2BE345960062357A /* Train.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Train.swift; sourceTree = "<group>"; };
+		2EFEA8212BE467560062357A /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		2EFEA8232BE468110062357A /* Decodables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,10 +61,12 @@
 			isa = PBXGroup;
 			children = (
 				2E4C1AEB2BE32CE800DAF0FC /* Info.plist */,
-				2E4C1ADF2BE0988500DAF0FC /* ContentView.swift */,
 				2E4C1ADD2BE0988500DAF0FC /* TravelApp.swift */,
 				2EFEA81F2BE345960062357A /* Train.swift */,
+				2E4C1ADF2BE0988500DAF0FC /* ContentView.swift */,
 				2EFEA81D2BE3432A0062357A /* TrainViewModel.swift */,
+				2EFEA8232BE468110062357A /* Decodables.swift */,
+				2EFEA8212BE467560062357A /* DateFormatter.swift */,
 				2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */,
 				2E4C1AE32BE0988700DAF0FC /* Preview Content */,
 			);
@@ -146,9 +152,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EFEA8202BE345960062357A /* Train.swift in Sources */,
+				2EFEA8242BE468110062357A /* Decodables.swift in Sources */,
 				2EFEA81E2BE3432A0062357A /* TrainViewModel.swift in Sources */,
 				2E4C1AE02BE0988500DAF0FC /* ContentView.swift in Sources */,
 				2E4C1ADE2BE0988500DAF0FC /* TravelApp.swift in Sources */,
+				2EFEA8222BE467560062357A /* DateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

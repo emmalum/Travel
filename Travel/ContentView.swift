@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var trainVM = TrainViewModel()
+    
+    @State var transitAPI: TrainViewModel = TrainViewModel()
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,9 +17,7 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
         }
-        .task{
-            await trainVM.getData()
-        }
+    
     }
 }
 
