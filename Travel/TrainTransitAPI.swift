@@ -51,7 +51,7 @@ class TrainTransitAPI {
     
     }
     
-    //for first decodable
+
     func parseJSON(data: Data){
         let decoder = JSONDecoder()
         do {
