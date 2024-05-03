@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var transitAPI: TrainViewModel = TrainViewModel()
+    @State var transitAPI: TrainTransitAPI = TrainTransitAPI()
     var body: some View {
         VStack {
             Image(systemName: "globe")

@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class TrainViewModel {
+class TrainTransitAPI {
     var train: Train?
     var urlString: URL = URL(string: "https://api.transport.nsw.gov.au/v1/tp/trip")!
     
