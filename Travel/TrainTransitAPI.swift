@@ -11,10 +11,11 @@ import Foundation
 class TrainTransitAPI {
 
     var urlString: URL = URL(string: "https://api.transport.nsw.gov.au/v1/tp/trip")!
-
-    let APIKey: String = "apikey eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
+//    let APIKey: String = "apikey eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
+    let APIKey: String = "apikey 5RjqITN7W2Jaf9TzUwKzvMnoRfNkA6Jl32jw"
     let APIHeader: [String: String]
     
+    var tripAPIParams: TripAPIParams?
     var currentTransitRequest: TransitRequest?
     
     init() {
@@ -24,10 +25,12 @@ class TrainTransitAPI {
         ]
     }
     
-    func getData(currentDate: Date, origin:String, destination:String) {
-        let tripApiParams = TripAPIParams(date: currentDate, origin: origin, destination: destination)
+    func getData(currentDate: Date, origin: String, destination: String) {
+        let tripAPIParams = TripAPIParams(date: currentDate, origin: origin, destination: destination)
+        
         var urlComponents = URLComponents(url: urlString, resolvingAgainstBaseURL: false)
-        urlComponents?.queryItems = tripApiParams.toURLQuery()
+        
+        urlComponents?.queryItems = tripAPIParams.toURLQuery()
         
         guard let modifiedURL = urlComponents?.url else{
             print("Failed to create url")
@@ -65,7 +68,7 @@ class TrainTransitAPI {
     
 }
 
-//arguments for the api to set up queries
+//arguments for the API to set up queries
 //preset with defaults(4.3 example)
 struct TripAPIParams {
     var outputFormat: String = "rapidJSON"
