@@ -37,6 +37,11 @@ struct Legs: Decodable {
 //    var coords: [Coords]?
     var destination: Destination?
     var origin: Origin?
+    var transportation: Transportation?
+}
+
+struct Transportation: Decodable {
+    var number: String?
 }
 
 struct Origin: Decodable {
