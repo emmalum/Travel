@@ -11,8 +11,7 @@ import Foundation
 class TrainTransitAPI {
 
     var urlString: URL = URL(string: "https://api.transport.nsw.gov.au/v1/tp/trip")!
-//    let APIKey: String = "apikey eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9"
-    let APIKey: String = "apikey 5RjqITN7W2Jaf9TzUwKzvMnoRfNkA6Jl32jw"
+    let APIKey: String = "apikey eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJlTTZKV0drOG9QbHU4aV9Yb2pkYUUtM0VXNWZ0N3NjWXZ3VW90MXpPYlcwIiwiaWF0IjoxNzE0NzE4ODc0fQ.TdHa0PxxbzfmBGEaS-rgRN1arSkgFfMMJxLpAUc5tlM"
     let APIHeader: [String: String]
     
     var tripAPIParams: TripAPIParams?
