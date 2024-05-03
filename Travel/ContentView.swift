@@ -31,13 +31,6 @@ struct ContentView: View {
                 }
             }
             HStack {
-                Button{
-                    refresh.toggle()
-                } label: {
-                    Text("Refresh")
-                }
-                .buttonStyle(.bordered)
-                
                 Button {
                     transitAPI.getData(currentDate: Date(), origin: "201833", destination: "2000167")
                 } label: {
