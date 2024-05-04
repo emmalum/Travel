@@ -16,6 +16,7 @@ struct ButtonView: View {
     @State var var2: String?
     
     var body: some View {
+  
         Text("\(var1 ?? "") \(var2 ?? "")")
         Button {
             button.toggle()
