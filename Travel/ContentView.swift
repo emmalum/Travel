@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State var transitAPI: TrainTransitAPI = TrainTransitAPI()
-    @State var transitParams: TripAPIParams = TripAPIParams(date: Date(), origin: "200039", destination: "201631")
+    @State var transitParams: TripAPIParams = TripAPIParams(date: Date(), origin: "", destination: "")
     @State var refresh: Bool = false
     
     var body: some View {
@@ -32,7 +32,7 @@ struct ContentView: View {
             }
             HStack {
                 Button {
-                    transitAPI.getData(currentDate: Date(), origin: "201833", destination: "2000167")
+                    transitAPI.getData(currentDate: Date(), origin: "10101331", destination: "10102027")
                 } label: {
                     Text("Get Data")
                 }

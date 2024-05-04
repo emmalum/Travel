@@ -66,7 +66,6 @@ struct Origin: Decodable {
         case name
         case niveau
     }
-    
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let departureTimeBaseTimetable = try container.decode(String.self, forKey: .departureTimeBaseTimetable)
@@ -82,6 +81,8 @@ struct Origin: Decodable {
         self.niveau = try container.decodeIfPresent(Int.self, forKey: .niveau)
     }
 }
+
+
 
 struct Destination: Decodable {
     var arrivalTimeBaseTimetable: Date

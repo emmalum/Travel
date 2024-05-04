@@ -26,10 +26,19 @@ struct ButtonView: View {
                 var1 = "destination"
             }
         } label: {
-            Text("Hello World")
-        }
-        .tint(button ? .blue : .red)
-        .buttonStyle(.borderedProminent)
+        Text("location1")
+            .foregroundColor(button ? .white : .black)
+    }
+    .tint(button ? .blue : .white)
+    .buttonStyle(.bordered)
+    .background(
+        RoundedRectangle(cornerRadius: 100)
+            .fill(button ? Color.buttonColour : Color.white)
+            .stroke(.buttonColour, lineWidth: 2)
+    )
+
+        
+        
         Button {
             button2.toggle()
             if var1 != nil {
@@ -39,10 +48,18 @@ struct ButtonView: View {
                 var1 = "destination"
             }
         } label: {
-            Text("Hello World")
+            Text("location2")
+                .foregroundColor(button ? .white : .black)
         }
-        .tint(button2 ? .blue : .red)
-        .buttonStyle(.borderedProminent)
+        .tint(button2 ? .blue : .white)
+        .buttonStyle(.bordered)
+        .background(
+            RoundedRectangle(cornerRadius: 100)
+                .fill(button2 ? Color.buttonColour : Color.white)
+                .stroke(.buttonColour, lineWidth: 2)
+        )
+        
+        
         Button {
             
         } label: {
