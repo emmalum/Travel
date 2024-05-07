@@ -10,6 +10,8 @@ import MapKit
 
 struct MapView: View {
     
+    @StateObject var viewModel = MapViewModel()
+    
     // These are the coordinates in the world
     // The coordinates for Sydney, Australia are:
     // Latitude: -33.865143
