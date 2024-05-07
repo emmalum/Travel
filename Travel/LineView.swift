@@ -23,24 +23,29 @@ struct LineView: View {
                     .foregroundColor(Color("T1Colour"))
                     .multilineTextAlignment(.center)
                     .padding(.top, 60.0)
-                ScrollView(.horizontal){
-                    HStack{
-                        Rectangle()
-                            .frame(width: 100.0, height: 20)
-                            .foregroundColor(.t1Colour)
-                         
-                        StationView(title:"Berowra")
+                
+                ForEach(0...10, id: \.self){ _ in
+                    ScrollView(.horizontal){
+                        HStack{
+                            Rectangle()
+                                .frame(width: 100.0, height: 20)
+                                .foregroundColor(.t1Colour)
+                             
+                            StationView(title:"Berowra")
+                            
+                        }
+                }
                         
-                        Rectangle()
-                            .frame(width: 100.0, height: 20)
-                            .foregroundColor(.t1Colour)
-                        
-                        StationView(title:"Mount Kuring-gai")
-                        
-                        Rectangle()
-                            .frame(width: 100.0, height: 20)
-                            .foregroundColor(.t1Colour)
-                    }
+//                        Rectangle()
+//                            .frame(width: 100.0, height: 20)
+//                            .foregroundColor(.t1Colour)
+//                        
+//                        StationView(title:"Mount Kuring-gai")
+//                        
+//                        Rectangle()
+//                            .frame(width: 100.0, height: 20)
+//                            .foregroundColor(.t1Colour)
+//                
                 }
                 
            
@@ -100,13 +105,14 @@ struct StationView: View{
             Text(title)
                 .foregroundColor(button ? .white : .black)
         }
-        .tint(button ? .blue : .white)
+            .tint(button ? .blue : .orange)
         .buttonStyle(.bordered)
-        .background(
-            RoundedRectangle(cornerRadius: 100)
-                .fill(button ? Color.buttonColour : Color.white)
-                .stroke(.buttonColour, lineWidth: 2)
-        )
+        .buttonBorderShape(.capsule)
+//        .background(
+//            RoundedRectangle(cornerRadius: 100)
+//                .fill(button ? Color.buttonColour : Color.white)
+//                .stroke(.buttonColour, lineWidth: 2)
+//        )
       
     }
 }
