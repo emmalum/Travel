@@ -12,6 +12,7 @@
 		2E4C1AE22BE0988700DAF0FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */; };
 		2E4C1AE52BE0988700DAF0FC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4C1AE42BE0988700DAF0FC /* Preview Assets.xcassets */; };
 		2EB6DE5F2BE4A21E00053E9A /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6DE5E2BE4A21E00053E9A /* ButtonView.swift */; };
+		2EB6DE612BE9C21E00053E9A /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB6DE602BE9C21E00053E9A /* LineView.swift */; };
 		2EFEA81E2BE3432A0062357A /* TrainTransitAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEA81D2BE3432A0062357A /* TrainTransitAPI.swift */; };
 		2EFEA8222BE467560062357A /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEA8212BE467560062357A /* DateFormatter.swift */; };
 		2EFEA8242BE468110062357A /* Decodables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEA8232BE468110062357A /* Decodables.swift */; };
@@ -28,6 +29,7 @@
 		2E4C1AE42BE0988700DAF0FC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2E4C1AEB2BE32CE800DAF0FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2EB6DE5E2BE4A21E00053E9A /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		2EB6DE602BE9C21E00053E9A /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		2EFEA81D2BE3432A0062357A /* TrainTransitAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTransitAPI.swift; sourceTree = "<group>"; };
 		2EFEA8212BE467560062357A /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		2EFEA8232BE468110062357A /* Decodables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decodables.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				2E4C1AEB2BE32CE800DAF0FC /* Info.plist */,
+				2EB6DE602BE9C21E00053E9A /* LineView.swift */,
 				2EB6DE5E2BE4A21E00053E9A /* ButtonView.swift */,
 				2E4C1ADD2BE0988500DAF0FC /* TravelAPIApp.swift */,
 				2E4C1ADF2BE0988500DAF0FC /* ContentView.swift */,
@@ -166,6 +169,7 @@
 				9B8502762BE45FA200C52A62 /* SettingsView.swift in Sources */,
 				9B8502782BE45FB200C52A62 /* LoadingView.swift in Sources */,
 				2E4C1AE02BE0988500DAF0FC /* ContentView.swift in Sources */,
+				2EB6DE612BE9C21E00053E9A /* LineView.swift in Sources */,
 				2E4C1ADE2BE0988500DAF0FC /* TravelAPIApp.swift in Sources */,
 				9BDBC5DA2BE64E0F0064B47E /* MapView.swift in Sources */,
 				2EFEA8222BE467560062357A /* DateFormatter.swift in Sources */,

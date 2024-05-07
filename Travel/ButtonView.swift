@@ -39,7 +39,6 @@ struct ButtonView: View {
     )
 
         
-        
         Button {
             button2.toggle()
             if var1 != nil {
