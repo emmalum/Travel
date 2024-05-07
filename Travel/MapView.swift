@@ -12,27 +12,44 @@ struct MapView: View {
     
     @StateObject var viewModel = MapViewModel()
     
-    // These are the coordinates in the world
-    // The coordinates for Sydney, Australia are:
-    // Latitude: -33.865143
-    // Longitude: 151.209900
-    var coordinate: CLLocationCoordinate2D
-
     var body: some View {
-        Map(position: .constant(.region(region)))
-    }
-    
-    // Below is the region where the map should show
-    // The center is the cordinates and the span is how much the map is zoomed in.
-    // A larger latitudeDelta/longitudeDelta, the more zoomed out the map will be.
-    private var region: MKCoordinateRegion {
-        MKCoordinateRegion(
-            center: coordinate,
-            span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
-        )
+        VStack {
+            MapReader { mapReader in
+                Map(position: $viewModel.mapCameraPosition) {
+                    
+                    // For each pin, spawn them on the map:
+                    ForEach(viewModel.pinArray) { pin in
+                        Annotation(pin.locality, coordinate: pin.coordinates) {
+                            // Place the MapPin from the coordinates above.
+                            // The locality is just a string that tells us about the name of the location.
+                            // The locality appears below the pin on the map.
+                            MapPin()
+                            
+                                // When you press the pin for 0.1 seconds, the camera will zoom in.
+                                .onLongPressGesture(minimumDuration: 0.1) {
+                                    viewModel.annotationPressed(mapAnnotation: pin)
+                                }
+                        }
+                    }
+                }
+                .mapStyle(.standard)
+                
+                // This is for spawning the map pin in the place that the user has clicked
+                .onTapGesture { tap in
+                    if let tapCoordinate = mapReader.convert(tap, from: .local) {
+                        Task {
+                            await viewModel.addPin(coordinate: tapCoordinate)
+                        }
+                        print("Continuing program")
+                        
+                    }
+                }
+            }
+            
+        }
     }
 }
 
 #Preview {
-    MapView(coordinate: CLLocationCoordinate2D(latitude: -33.865143, longitude: 151.209900))
+    MapView()
 }

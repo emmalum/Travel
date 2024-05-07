@@ -46,7 +46,10 @@ struct LoadingView: View {
             }
             
             // On Zstack, when the isloaded is true, load the next screen:
+            // Also set the background colour to white so we can't see the loading screen overlapping.
             if isLoaded{
+                Color.white
+                    .ignoresSafeArea()
                 ContentView()
             }
         }
