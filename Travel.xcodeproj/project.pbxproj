@@ -19,6 +19,8 @@
 		9B8502762BE45FA200C52A62 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8502752BE45FA200C52A62 /* SettingsView.swift */; };
 		9B8502782BE45FB200C52A62 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8502772BE45FB200C52A62 /* LoadingView.swift */; };
 		9BDBC5DA2BE64E0F0064B47E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDBC5D92BE64E0F0064B47E /* MapView.swift */; };
+		9BE4FC672BE9CD7D004A867A /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE4FC662BE9CD7D004A867A /* MapViewModel.swift */; };
+		9BE4FC692BE9CEDE004A867A /* MapPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE4FC682BE9CEDE004A867A /* MapPin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		9B8502752BE45FA200C52A62 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B8502772BE45FB200C52A62 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		9BDBC5D92BE64E0F0064B47E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		9BE4FC662BE9CD7D004A867A /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		9BE4FC682BE9CEDE004A867A /* MapPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 				9B8502752BE45FA200C52A62 /* SettingsView.swift */,
 				9B8502772BE45FB200C52A62 /* LoadingView.swift */,
 				9BDBC5D92BE64E0F0064B47E /* MapView.swift */,
+				9BE4FC662BE9CD7D004A867A /* MapViewModel.swift */,
+				9BE4FC682BE9CEDE004A867A /* MapPin.swift */,
 				2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */,
 				2E4C1AE32BE0988700DAF0FC /* Preview Content */,
 			);
@@ -164,6 +170,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2EFEA8242BE468110062357A /* Decodables.swift in Sources */,
+				9BE4FC692BE9CEDE004A867A /* MapPin.swift in Sources */,
+				9BE4FC672BE9CD7D004A867A /* MapViewModel.swift in Sources */,
 				2EFEA81E2BE3432A0062357A /* TrainTransitAPI.swift in Sources */,
 				2EB6DE5F2BE4A21E00053E9A /* ButtonView.swift in Sources */,
 				9B8502762BE45FA200C52A62 /* SettingsView.swift in Sources */,
