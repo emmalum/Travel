@@ -18,15 +18,23 @@ struct ContentView: View {
             if let tripData = transitAPI.currentTransitRequest {
                 ForEach(0..<tripData.journeys.count, id:\.self) {i in
                     ForEach(0..<tripData.journeys[i].legs.count, id:\.self) { j in
-                        VStack {
-                            Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
-                            HStack {
-                                Text("\(i), \(j)")
-                                Text(tripData.journeys[i].legs[j].origin?.name ?? "No Origin Name")
+                        
+//                        ForEach(0..<tripData.legs [j].destination?[coord]){
+//                            
+//                        }
+                        
+                 
+//                        VStack {
+//                            Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
+//                            HStack {
+//                                Text("\(i), \(j)")
+//                                Text(tripData.journeys[i].legs[j].origin?.name ?? "No Origin Name")
                                 Text(tripData.journeys[i].legs[j].destination?.name ?? "No Destination Name")
-                            }
-                            .frame(height: 50)
-                        }
+                                
+//                        
+//                            }
+//                            .frame(height: 50)
+//                        }
                     }
                 }
             }
@@ -46,3 +54,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+

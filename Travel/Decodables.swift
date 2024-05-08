@@ -34,18 +34,19 @@ struct Fare: Decodable {
 }
 
 struct Legs: Decodable {
-//    var coords: [Coords]?
     var destination: Destination?
     var origin: Origin?
     var transportation: Transportation?
+
 }
+
 
 struct Transportation: Decodable {
     var number: String?
 }
 
 struct Origin: Decodable {
-//    var coord: [Coords]?
+    var coord: [Float]
     var departureTimeBaseTimetable: Date
     var departureTimeEstimated: Date
     var departureTimePlanned: Date
@@ -57,6 +58,7 @@ struct Origin: Decodable {
 //    var parent: Parent?
     
     enum CodingKeys: CodingKey {
+        case coord
         case departureTimeBaseTimetable
         case departureTimeEstimated
         case departureTimePlanned
@@ -79,12 +81,16 @@ struct Origin: Decodable {
         self.isGlobalId = try container.decode(Bool.self, forKey: .isGlobalId)
         self.name = try container.decode(String.self, forKey: .name)
         self.niveau = try container.decodeIfPresent(Int.self, forKey: .niveau)
+//        self.coord = try container.decode(String.self, forKey: .coord)
+        self.coord = try container.decodeIfPresent([Float].self, forKey: .coord) ?? []
     }
 }
 
 
 
 struct Destination: Decodable {
+//    var coord: String
+    var coord: [Float]
     var arrivalTimeBaseTimetable: Date
     var arrivalTimeEstimated: Date
     var arrivalTimePlanned: Date
@@ -97,6 +103,7 @@ struct Destination: Decodable {
 //    var parent: Parent?
     
     enum CodingKeys: CodingKey {
+        case coord
         case arrivalTimeBaseTimetable
         case arrivalTimeEstimated
         case arrivalTimePlanned
@@ -120,5 +127,7 @@ struct Destination: Decodable {
         self.isGlobalId = try container.decode(Bool.self, forKey: .isGlobalId)
         self.name = try container.decode(String.self, forKey: .name)
         self.niveau = try container.decodeIfPresent(Int.self, forKey: .niveau)
+//        self.coord = try container.decode(String.self, forKey: .coord)
+        self.coord = try container.decodeIfPresent([Float].self, forKey: .coord) ?? []
     }
 }
