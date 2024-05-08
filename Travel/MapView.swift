@@ -12,6 +12,8 @@ struct MapView: View {
     
     @StateObject var viewModel = MapViewModel()
     
+    @State var detailsPopUp = false;
+    
     var body: some View {
         VStack {
             MapReader { mapReader in
@@ -28,6 +30,21 @@ struct MapView: View {
                                 // When you press the pin for 0.1 seconds, the camera will zoom in.
                                 .onLongPressGesture(minimumDuration: 0.1) {
                                     viewModel.annotationPressed(mapAnnotation: pin)
+                                    detailsPopUp = true;
+                                    print("Long Pressed")
+                                }
+                            // When long pressing on a pin, load a pop up.
+                                .popover(isPresented: $detailsPopUp, arrowEdge: .bottom){
+                                    Text("Station Name:")
+                                        .frame(width: 150, height: 100)
+                                    Text("Address:")
+                                        .frame(width: 150, height: 100)
+                                    Text("Interchange:")
+                                        .frame(width: 150, height: 100)
+                                    Text("No. Platforms:")
+                                        .frame(width: 150, height: 100)
+                                    Text("Wheelchair Access:")
+                                        .frame(width: 150, height: 100)
                                 }
                         }
                     }
@@ -41,7 +58,7 @@ struct MapView: View {
                             await viewModel.addPin(coordinate: tapCoordinate)
                         }
                         print("Continuing program")
-                        
+                        detailsPopUp = false;
                     }
                 }
             }
