@@ -24,15 +24,16 @@ struct LineView: View {
                     .multilineTextAlignment(.center)
                     .padding(.top, 60.0)
                 
-                ForEach(0...10, id: \.self){ _ in
+     
                     ScrollView(.horizontal){
                         HStack{
+                            
+                        ForEach(0...2, id: \.self){ _ in
                             Rectangle()
                                 .frame(width: 100.0, height: 20)
                                 .foregroundColor(.t1Colour)
                              
                             StationView(title:"Berowra")
-                            
                         }
                 }
                         

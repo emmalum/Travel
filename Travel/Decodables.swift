@@ -37,7 +37,6 @@ struct Legs: Decodable {
     var destination: Destination?
     var origin: Origin?
     var transportation: Transportation?
-
 }
 
 
@@ -46,7 +45,7 @@ struct Transportation: Decodable {
 }
 
 struct Origin: Decodable {
-    var coord: [Float]
+    var coord: [Float]?
     var departureTimeBaseTimetable: Date
     var departureTimeEstimated: Date
     var departureTimePlanned: Date
@@ -57,6 +56,10 @@ struct Origin: Decodable {
     var niveau: Int?
 //    var parent: Parent?
     
+    struct Coord: Decodable {
+        var lat: Float
+        var lng: Float
+    }
     enum CodingKeys: CodingKey {
         case coord
         case departureTimeBaseTimetable
@@ -83,18 +86,17 @@ struct Origin: Decodable {
         self.niveau = try container.decodeIfPresent(Int.self, forKey: .niveau)
 //        self.coord = try container.decode(String.self, forKey: .coord)
         self.coord = try container.decodeIfPresent([Float].self, forKey: .coord) ?? []
+//        return
     }
 }
 
 
 
 struct Destination: Decodable {
-//    var coord: String
     var coord: [Float]
     var arrivalTimeBaseTimetable: Date
     var arrivalTimeEstimated: Date
     var arrivalTimePlanned: Date
-//    var coord: Coords?
 //    var disassembledName: String?
     var id: String
     var isGlobalId: Bool

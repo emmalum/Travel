@@ -31,6 +31,22 @@ class MapViewModel: ObservableObject {
     @Published var pinArray: [Pin] = []
     
     init() {
+        @State var transitAPI: TrainTransitAPI = TrainTransitAPI()
+        @State var transitParams: TripAPIParams = TripAPIParams(date: Date(), origin: "", destination: "")
+        @State var refresh: Bool = false
+        
+        if let tripData = transitAPI.currentTransitRequest {
+            ForEach(0..<tripData.journeys.count, id:\.self) {i in
+                ForEach(0..<tripData.journeys[i].legs.count, id:\.self) { j in
+                    
+                    Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
+//                    print(tripData.journeys[i].legs[j])
+                    
+//                    var location = CLLocationCoordinate2D(latitude: Double(tripData.journeys[i].legs[j].origin?.coord[0]), longitude: Double(tripData.journeys[i].legs[j].origin?.coord[1]))
+//                    addPin(location)
+                }
+            }
+        }
         self.sydneyCoordinates = CLLocationCoordinate2D(latitude: -33.8688, longitude: 151.2093)
         self.mapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: sydneyCoordinates, distance: 10000))
     }
