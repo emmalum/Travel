@@ -18,12 +18,11 @@ struct ContentView: View {
         ScrollView(.vertical){
             if let tripData = transitAPI.currentTransitRequest {
                 ForEach(0..<tripData.journeys.count, id:\.self) {i in
+                    Spacer()
+                    Text("Journey \(i)")
+                    
                     ForEach(0..<tripData.journeys[i].legs.count, id:\.self) { j in
                  
-                        Spacer()
-                        Text("new")
-                        
-//
 //                        ForEach(tripData.origin.coord, id: \.self) { coord in
 //                            Text(String(coord[0]))
 //                            Text(String(coord[1]))
@@ -34,6 +33,7 @@ struct ContentView: View {
 //                        VStack {
                       
                             Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
+                                .foregroundColor(Color("T1Colour"))
 //                            HStack {
 //                                Text("\(i), \(j)")
                                 Text(tripData.journeys[i].legs[j].origin?.name ?? "No Origin Name")
