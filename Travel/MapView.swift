@@ -34,18 +34,22 @@ struct MapView: View {
                                     print("Long Pressed")
                                 }
                             // When long pressing on a pin, load a pop up.
-                                .popover(isPresented: $detailsPopUp, arrowEdge: .bottom){
-                                    Text("Station Name:")
-                                        .frame(width: 150, height: 100)
-                                    Text("Address:")
-                                        .frame(width: 150, height: 100)
-                                    Text("Interchange:")
-                                        .frame(width: 150, height: 100)
-                                    Text("No. Platforms:")
-                                        .frame(width: 150, height: 100)
-                                    Text("Wheelchair Access:")
-                                        .frame(width: 150, height: 100)
-                                }
+                                //.popover(isPresented: $detailsPopUp, arrowEdge: .bottom){
+                                    //Text("Station Name:")
+                                        //.frame(width: 150, height: 100)
+                                    //Text("Address:")
+                                        //.frame(width: 150, height: 100)
+                                    //Text("Interchange:")
+                                        //.frame(width: 150, height: 100)
+                                    //Text("No. Platforms:")
+                                        //.frame(width: 150, height: 100)
+                                    //Text("Wheelchair Access:")
+                                        //.frame(width: 150, height: 100)
+                                //}
+                            
+                            if detailsPopUp {
+                                PinDetails(stationName: pin.locality, stationAddress: pin.address, platform: pin.platforms, interchange: pin.interchange, wheelChairAccess: pin.wheelchairAccess)
+                            }
                         }
                     }
                 }

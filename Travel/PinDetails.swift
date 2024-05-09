@@ -9,31 +9,31 @@ import SwiftUI
 
 struct PinDetails: View {
     
-    @State var stationName: String
-    @State var address: String
-    @State var interchange: Int
-    @State var platforms: Int
-    @State var wheelchairAccess: Bool
+    var stationName: String
+    var stationAddress: String
+    var platform: Int
+    var interchange: Int
+    var wheelChairAccess: Bool
     
-    init(name: String, address: String, interchange: Int, platform: Int, wheelchair: Bool){
-        self.stationName = name
-        self.address = address
+    init(stationName: String, stationAddress: String, platform: Int, interchange: Int, wheelChairAccess: Bool){
+        self.stationName = stationName
+        self.stationAddress = stationAddress
+        self.platform = platform
         self.interchange = interchange
-        self.platforms = platform
-        self.wheelchairAccess = wheelchair
+        self.wheelChairAccess = wheelChairAccess
     }
     
     var body: some View {
         VStack{
             Text("Station name: \(stationName)")
-            Text("Address: \(address)")
-            Text("Intergange: \(platforms)")
+            Text("Address: \(stationAddress)")
+            Text("Intergange: \(platform)")
             Text("No. Platforms: \(interchange)")
-            Text("Wheelchair Access: \(wheelchairAccess)")
+            Text("Wheelchair Access: \(wheelChairAccess)")
         }
     }
 }
 
 #Preview {
-    PinDetails(name: "Station 6", address: "Somewhere", interchange: 1, platform: 2, wheelchair: false)
+    PinDetails(stationName: "Station 6", stationAddress: "Somewhere", platform: 1, interchange: 2, wheelChairAccess: false)
 }

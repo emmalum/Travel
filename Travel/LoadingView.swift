@@ -16,6 +16,9 @@ struct LoadingView: View {
     var body: some View {
         ZStack{
             VStack {
+                
+                Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                
                 Text("Loading")
                     .font(.title)
                     .padding()

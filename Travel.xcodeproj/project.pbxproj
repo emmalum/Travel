@@ -84,9 +84,9 @@
 				9BDBC5D92BE64E0F0064B47E /* MapView.swift */,
 				9BE4FC662BE9CD7D004A867A /* MapViewModel.swift */,
 				9BE4FC682BE9CEDE004A867A /* MapPin.swift */,
+				9B3FF6212BEC77E400DDBD22 /* PinDetails.swift */,
 				2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */,
 				2E4C1AE32BE0988700DAF0FC /* Preview Content */,
-				9B3FF6212BEC77E400DDBD22 /* PinDetails.swift */,
 			);
 			path = Travel;
 			sourceTree = "<group>";

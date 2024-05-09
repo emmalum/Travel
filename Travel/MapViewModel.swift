@@ -18,7 +18,7 @@ struct Pin: Identifiable {
     let coordinates: CLLocationCoordinate2D
     
     let address: String = "Unknown"
-    let interchage: Int = 0
+    let interchange: Int = 0
     let platforms: Int = 0
     let wheelchairAccess: Bool = false
 }
