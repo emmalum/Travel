@@ -16,6 +16,11 @@ struct Pin: Identifiable {
     let id: String = UUID().uuidString
     let locality: String
     let coordinates: CLLocationCoordinate2D
+    
+    let address: String = "Unknown"
+    let interchange: Int = 0
+    let platforms: Int = 0
+    let wheelchairAccess: Bool = false
 }
 
 class MapViewModel: ObservableObject {
