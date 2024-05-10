@@ -8,7 +8,6 @@
 import SwiftUI
 import MapKit
 
-
 // Below is the pin object which will be placed in the "pinArray".
 // The localitiy field is the name of the place that the pin is placed on.
 // It stores the coordinates for the MapPin.
@@ -17,10 +16,27 @@ struct Pin: Identifiable {
     let locality: String
     let coordinates: CLLocationCoordinate2D
     
-    let address: String = "Unknown"
-    let interchange: Int = 0
-    let platforms: Int = 0
-    let wheelchairAccess: Bool = false
+    let address: String
+    let interchange: Int
+    let platforms: Int
+    let wheelchairAccess: Bool
+}
+
+struct Details: Identifiable {
+    let id: String = UUID().uuidString
+    let name: String
+    let address: String
+    let interchange: Int
+    let platforms: Int
+    let wheelchairAccess: Bool
+    
+    init(name: String, address: String, interchange: Int, platforms: Int, wheelchairAccess: Bool) {
+        self.name = name
+        self.address = address
+        self.interchange = interchange
+        self.platforms = platforms
+        self.wheelchairAccess = wheelchairAccess
+    }
 }
 
 class MapViewModel: ObservableObject {
@@ -34,6 +50,7 @@ class MapViewModel: ObservableObject {
     
     @Published var mapCameraPosition: MapCameraPosition
     @Published var pinArray: [Pin] = []
+    @Published var detailsArray: [Details] = []
     
     init() {
         self.sydneyCoordinates = CLLocationCoordinate2D(latitude: -33.8688, longitude: 151.2093)
@@ -52,7 +69,7 @@ class MapViewModel: ObservableObject {
                 let locality = placemark.locality ?? "Unknown"
                 
                 // Create and add the pin onto the map and list.
-                let newPin = Pin(locality: locality, coordinates: coordinate)
+                let newPin = Pin(locality: locality, coordinates: coordinate, address: "", interchange: 0, platforms: 2, wheelchairAccess: false)
                 pinArray.append(newPin)
             }
         } catch let error {
@@ -60,11 +77,25 @@ class MapViewModel: ObservableObject {
         }
     }
     
+    // Another add pin function but it includes all details from the pin as well
+    func addPin(coordinate: CLLocationCoordinate2D, name: String, address: String, interchange: Int, platforms: Int, wheelchair: Bool) async {
+        let newPin = Pin(locality: name, coordinates: coordinate, address: address, interchange: interchange, platforms: platforms, wheelchairAccess: wheelchair)
+        pinArray.append(newPin)
+        let newDetails = Details(name: name, address: address, interchange: interchange, platforms: platforms, wheelchairAccess: wheelchair)
+        detailsArray.append(newDetails)
+    }
+    
     // This function just zooms in onto the specific pin on the map.
     // It is only called when pressing on the pin for about 0.1 seconds.
+    // Tried to make it so that it only loads the details for the correstponding pin, but I'm unsure on how to do that :/
     func annotationPressed(mapAnnotation: Pin) {
         withAnimation(.easeIn) {
             self.mapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: mapAnnotation.coordinates, distance: 5000))
+            
+            
+            if let firstIndex = pinArray.firstIndex(where: {$0.locality == mapAnnotation.locality}) {
+                print("Found at index: \(firstIndex)")
+            }
         }
     }
     
