@@ -55,11 +55,11 @@ struct TrainTime: Identifiable {
 
 struct TrainTripView: View {
     let trainTimes: [TrainTime] = [
-        TrainTime(trainLine: "T1", platform: "1", departureTime: "08:00", arrivalTime: "09:00", journeyTime: "35 mins"),
-        TrainTime(trainLine: "T2", platform: "2", departureTime: "08:30", arrivalTime: "09:30", journeyTime: "55 mins"),
-        TrainTime(trainLine: "T8", platform: "3", departureTime: "09:00", arrivalTime: "10:00", journeyTime: "1 hour"),
-        TrainTime(trainLine: "T5", platform: "5", departureTime: "10:00", arrivalTime: "11:00", journeyTime: "1 hour"),
-        TrainTime(trainLine: "T7", platform: "8", departureTime: "10:00", arrivalTime: "12:00", journeyTime: "2 hours"),
+        TrainTime(trainLine: "T1", platform: "1", departureTime: "08:00", arrivalTime: "08:35", journeyTime: "35 mins"),
+        TrainTime(trainLine: "T2", platform: "2", departureTime: "08:30", arrivalTime: "09:25", journeyTime: "55 mins"),
+        TrainTime(trainLine: "T8", platform: "3", departureTime: "08:40", arrivalTime: "09:40", journeyTime: "1 hour"),
+        TrainTime(trainLine: "T5", platform: "5", departureTime: "9:00", arrivalTime: "10:00", journeyTime: "1 hour"),
+        TrainTime(trainLine: "T7", platform: "8", departureTime: "9:00", arrivalTime: "10:30", journeyTime: "1 hour 30 mins"),
         
     ]
     
