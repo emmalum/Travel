@@ -17,34 +17,36 @@ struct ContentView: View {
         VStack {
         ScrollView(.vertical){
             if let tripData = transitAPI.currentTransitRequest {
-                ForEach(0..<tripData.journeys.count, id:\.self) {i in
-                    Spacer()
-                    Text("Journey \(i)")
-                    
-                    ForEach(0..<tripData.journeys[i].legs.count, id:\.self) { j in
-                 
-//                        ForEach(tripData.origin.coord, id: \.self) { coord in
-//                            Text(String(coord[0]))
-//                            Text(String(coord[1]))
-////                            Text("Longitude: \(String(coord.lng) ?? "")")
-//                        }
-//                        Text(String(tripData.journeys[i].legs[j].destination?.coord) ?? "0.0")
-                      
-//                        VStack {
-                      
-                            Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
-                                .foregroundColor(Color("T1Colour"))
-//                            HStack {
-//                                Text("\(i), \(j)")
-                                Text(tripData.journeys[i].legs[j].origin?.name ?? "No Origin Name")
-                                Text(tripData.journeys[i].legs[j].destination?.name ?? "No Destination Name")
-//                                
-//                        
-//                            }
-//                            .frame(height: 50)
-//                        }
+                    ForEach(0..<tripData.journeys.count, id:\.self) {i in
+                        
+                        if let legs = tripData.journeys[i].legs.first(where: { $0.transportation?.number == "T9 Northern Line" }) {
+                       
                         Spacer()
+                        Text("Journey \(i)")
+                            .fontWeight(.bold)
+                            
+                        
+//                        ForEach(0..<tripData.journeys[i].legs.count, id:\.self) { j in
+//                            Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
+//                                .foregroundColor(Color("T1Colour"))
+                            HStack{
+                                Text("Origin:")
+                                    .fontWeight(.semibold)
+//                                Text(tripData.journeys[i].legs[j].origin?.name ?? "No Origin Name")
+                                Text(legs.origin?.name ?? "No Origin Name")
+                            }
+                        
+                            HStack{
+                                Text("Destination:")
+                                    .fontWeight(.semibold)
+//                                Text(tripData.journeys[i].legs[j].destination?.name ?? "No Destination Name")
+                                Text(legs.destination?.name ?? "No Destination Name")
+                                
+                            }
+                            //                                Text("\(i), \(j)")
+                            Spacer()
                         }
+                    
                     }
                 }
             }
