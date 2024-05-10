@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State var transitAPI: TrainTransitAPI = TrainTransitAPI()
-    @State var transitParams: TripAPIParams = TripAPIParams(date: Date(), origin: "", destination: "")
+    @State var transitParams: TripAPIParams = TripAPIParams(date: Date(), origin: "", destination: "", type_destination: "")
     @State var refresh: Bool = false
     
     var body: some View {
@@ -24,8 +24,7 @@ struct ContentView: View {
                         Spacer()
                         Text("Journey \(i)")
                             .fontWeight(.bold)
-                            
-                        
+                    
 //                        ForEach(0..<tripData.journeys[i].legs.count, id:\.self) { j in
 //                            Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
 //                                .foregroundColor(Color("T1Colour"))
@@ -34,11 +33,13 @@ struct ContentView: View {
                                     .fontWeight(.semibold)
 //                                Text(tripData.journeys[i].legs[j].origin?.name ?? "No Origin Name")
                                 Text(legs.origin?.name ?? "No Origin Name")
+                            
                             }
                         
                             HStack{
                                 Text("Destination:")
                                     .fontWeight(.semibold)
+                                
 //                                Text(tripData.journeys[i].legs[j].destination?.name ?? "No Destination Name")
                                 Text(legs.destination?.name ?? "No Destination Name")
                                 
@@ -52,7 +53,7 @@ struct ContentView: View {
             }
             HStack {
                 Button {
-                    transitAPI.getData(currentDate: Date(), origin: "Berorwa Station", destination: "Roseville Station")
+                    transitAPI.getData(currentDate: Date(), origin: "Berorwa Station", destination: "Roseville Station", type_destination: "stop")
                 } label: {
                     Text("Get Data")
                 }

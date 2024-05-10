@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct LineView: View {
+    
+    @State var transitAPI: TrainTransitAPI = TrainTransitAPI()
+    @State var transitParams: TripAPIParams = TripAPIParams(date: Date(), origin: "", destination: "", type_destination: "")
+    
+    
     @State var button: Bool = false
     @State var button2: Bool = false
     @State var var1: String?

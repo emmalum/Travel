@@ -32,7 +32,7 @@ class MapViewModel: ObservableObject {
     
     init() {
         @State var transitAPI: TrainTransitAPI = TrainTransitAPI()
-        @State var transitParams: TripAPIParams = TripAPIParams(date: Date(), origin: "", destination: "")
+        @State var transitParams: TripAPIParams = TripAPIParams(date: Date(), origin: "", destination: "", type_destination: "")
         @State var refresh: Bool = false
         
         if let tripData = transitAPI.currentTransitRequest {

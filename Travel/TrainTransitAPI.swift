@@ -24,8 +24,8 @@ class TrainTransitAPI {
         ]
     }
     
-    func getData(currentDate: Date, origin: String, destination: String) {
-        let tripAPIParams = TripAPIParams(date: currentDate, origin: origin, destination: destination)
+    func getData(currentDate: Date, origin: String, destination: String, type_destination: String) {
+        let tripAPIParams = TripAPIParams(date: currentDate, origin: origin, destination: destination, type_destination: type_destination)
         
         var urlComponents = URLComponents(url: urlString, resolvingAgainstBaseURL: false)
         
@@ -82,11 +82,12 @@ struct TripAPIParams {
     var TfNSWTR: Bool = true;
     
     //initialising the TripAPIParams - by making it in object
-    init(date: Date, origin: String, destination: String) {
+    init(date: Date, origin: String, destination: String, type_destination: String) {
         self.itdDate = DateFormatter().currentDate.string(from: date)
         self.itdTime = DateFormatter().currentTime.string(from: date)
         self.name_origin = origin
         self.name_destination = destination
+        self.type_destination = type_destination
     }
     
     //formatting for API call
