@@ -18,6 +18,8 @@ struct LoadingView: View {
             VStack {
                 
                 Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                    .resizable()
+                    .frame(width: 128.0, height: 128.0)
                 
                 Text("Loading")
                     .font(.title)
@@ -42,8 +44,8 @@ struct LoadingView: View {
                 withAnimation(Animation.easeInOut(duration: 1.0).repeatForever()){
                     self.isAnimating.toggle()
                 }
-                // When 10 seconds have past, load the next screen. (Sets the isLoaded to true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10){
+                // When 5 seconds have past, load the next screen. (Sets the isLoaded to true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5){
                     self.isLoaded = true
                 }
             }

@@ -24,13 +24,15 @@ struct PinDetails: View {
     }
     
     var body: some View {
-        VStack{
+        VStack(alignment: .leading, spacing: 6){
             Text("Station name: \(stationName)")
             Text("Address: \(stationAddress)")
             Text("Intergange: \(platform)")
             Text("No. Platforms: \(interchange)")
             Text("Wheelchair Access: \(wheelChairAccess)")
         }
+        .padding()
+        .background(Color.white.opacity(0.5))
     }
 }
 
