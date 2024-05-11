@@ -16,6 +16,11 @@ struct Pin: Identifiable {
     let id: String = UUID().uuidString
     let locality: String
     let coordinates: CLLocationCoordinate2D
+    
+    let address: String = "Unknown"
+    let interchange: Int = 0
+    let platforms: Int = 0
+    let wheelchairAccess: Bool = false
 }
 
 class MapViewModel: ObservableObject {
@@ -31,6 +36,22 @@ class MapViewModel: ObservableObject {
     @Published var pinArray: [Pin] = []
     
     init() {
+        @State var transitAPI: TrainTransitAPI = TrainTransitAPI()
+        @State var transitParams: TripAPIParams = TripAPIParams(date: Date(), origin: "", destination: "", type_destination: "")
+        @State var refresh: Bool = false
+        
+        if let tripData = transitAPI.currentTransitRequest {
+            ForEach(0..<tripData.journeys.count, id:\.self) {i in
+                ForEach(0..<tripData.journeys[i].legs.count, id:\.self) { j in
+                    
+                    Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
+//                    print(tripData.journeys[i].legs[j])
+                    
+//                    var location = CLLocationCoordinate2D(latitude: Double(tripData.journeys[i].legs[j].origin?.coord[0]), longitude: Double(tripData.journeys[i].legs[j].origin?.coord[1]))
+//                    addPin(location)
+                }
+            }
+        }
         self.sydneyCoordinates = CLLocationCoordinate2D(latitude: -33.8688, longitude: 151.2093)
         self.mapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: sydneyCoordinates, distance: 10000))
     }
