@@ -15,28 +15,19 @@ struct Pin: Identifiable {
     let id: String = UUID().uuidString
     let locality: String
     let coordinates: CLLocationCoordinate2D
-    
-    let address: String
-    let interchange: Int
-    let platforms: Int
-    let wheelchairAccess: Bool
 }
 
+// Below is the details object which will be placed in the "detailsArray".
+// The coordinates are needed so that the details cooralate with the correct pin on the map
+// the name, address, interchange, platforms and wheel chair access are part of the details that are shown.
 struct Details: Identifiable {
     let id: String = UUID().uuidString
+    let coordinates: CLLocationCoordinate2D
     let name: String
     let address: String
     let interchange: Int
     let platforms: Int
     let wheelchairAccess: Bool
-    
-    init(name: String, address: String, interchange: Int, platforms: Int, wheelchairAccess: Bool) {
-        self.name = name
-        self.address = address
-        self.interchange = interchange
-        self.platforms = platforms
-        self.wheelchairAccess = wheelchairAccess
-    }
 }
 
 class MapViewModel: ObservableObject {
@@ -61,11 +52,20 @@ class MapViewModel: ObservableObject {
             ForEach(0..<tripData.journeys.count, id:\.self) {i in
                 ForEach(0..<tripData.journeys[i].legs.count, id:\.self) { j in
                     
-                    Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
+                    //Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
 //                    print(tripData.journeys[i].legs[j])
                     
-//                    var location = CLLocationCoordinate2D(latitude: Double(tripData.journeys[i].legs[j].origin?.coord[0]), longitude: Double(tripData.journeys[i].legs[j].origin?.coord[1]))
-//                    addPin(location)
+                    var location = CLLocationCoordinate2D(latitude: Double(tripData.journeys[i].legs[j].origin?.coord[0]), longitude: Double(tripData.journeys[i].legs[j].origin?.coord[1]))
+                    
+                    addPin(coordinate: location)
+                    
+                    var stationName: String = tripData.journeys[i].legs[j].origin?.name
+                    var stationAddress: String = "Sydney, NSW, Australia"
+                    var stationInterchanges: Int = 0
+                    var stationPlatform: Int = 2
+                    var wheelChairAccess: Bool = true
+                    
+                    addDetails(coordinate: location, name: stationName, address: stationAddress, interchange: stationInterchange, platforms: stationPlatforms, wheelchair: wheelChairAccess)
                 }
             }
         }
@@ -85,7 +85,7 @@ class MapViewModel: ObservableObject {
                 let locality = placemark.locality ?? "Unknown"
                 
                 // Create and add the pin onto the map and list.
-                let newPin = Pin(locality: locality, coordinates: coordinate, address: "", interchange: 0, platforms: 2, wheelchairAccess: false)
+                let newPin = Pin(locality: locality, coordinates: coordinate)
                 pinArray.append(newPin)
             }
         } catch let error {
@@ -93,11 +93,11 @@ class MapViewModel: ObservableObject {
         }
     }
     
-    // Another add pin function but it includes all details from the pin as well
-    func addPin(coordinate: CLLocationCoordinate2D, name: String, address: String, interchange: Int, platforms: Int, wheelchair: Bool) async {
-        let newPin = Pin(locality: name, coordinates: coordinate, address: address, interchange: interchange, platforms: platforms, wheelchairAccess: wheelchair)
-        pinArray.append(newPin)
-        let newDetails = Details(name: name, address: address, interchange: interchange, platforms: platforms, wheelchairAccess: wheelchair)
+    // This function will add details from the pin onto the "detailsArray"
+    // It works in the smae way as the addpin() function but for the information box.
+    func addDetails(coordinate: CLLocationCoordinate2D, name: String, address: String, interchange: Int, platforms: Int, wheelchair: Bool) async {
+        
+        let newDetails = Details(coordinate: coordinate, name: name, address: address, interchange: interchange, platforms: platforms, wheelchairAccess: wheelchair)
         detailsArray.append(newDetails)
     }
     
@@ -107,11 +107,6 @@ class MapViewModel: ObservableObject {
     func annotationPressed(mapAnnotation: Pin) {
         withAnimation(.easeIn) {
             self.mapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: mapAnnotation.coordinates, distance: 5000))
-            
-            
-            if let firstIndex = pinArray.firstIndex(where: {$0.locality == mapAnnotation.locality}) {
-                print("Found at index: \(firstIndex)")
-            }
         }
     }
     

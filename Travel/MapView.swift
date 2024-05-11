@@ -34,9 +34,21 @@ struct MapView: View {
                                     detailsPopUp = true;
                                     print("Long Pressed")
                                 }
+                            
                             // If the pin is long pressed for 0.1 seconds, then show the details:
+                            //if detailsPopUp {
+                            //PinDetails(stationName: pin.locality, stationAddress: pin.address, platform: pin.platforms, interchange: pin.interchange, wheelChairAccess: pin.wheelchairAccess)
+                            //}
+                        }
+                    }
+                    
+                    // For every pin detail, spawn them on the map.
+                    ForEach(viewModel.detailsArray) { detail in
+                        Annotation(detail.name, coordinate: detail.coordinates) {
+                    
+                            //If the pin is long press for 0.1 seconds, then show the details.
                             if detailsPopUp {
-                                PinDetails(stationName: pin.locality, stationAddress: pin.address, platform: pin.platforms, interchange: pin.interchange, wheelChairAccess: pin.wheelchairAccess)
+                                PinDetails(stationName: detail.name, stationAddress: detail.address, platform: detail.platforms, interchange: detail.interchange, wheelChairAccess: detail.wheelchairAccess)
                             }
                         }
                     }
