@@ -53,9 +53,9 @@ class MapViewModel: ObservableObject {
                 ForEach(0..<tripData.journeys[i].legs.count, id:\.self) { j in
                     
                     //Text(tripData.journeys[i].legs[j].transportation?.number ?? "Walk")
-//                    print(tripData.journeys[i].legs[j])
+                    //print(tripData.journeys[i].legs[j])
                     
-                    var location = CLLocationCoordinate2D(latitude: Double(tripData.journeys[i].legs[j].origin?.coord[0]), longitude: Double(tripData.journeys[i].legs[j].origin?.coord[1]))
+                    var location = CLLocationCoordinate2D(latitude: Double(tripData.journeys[i].legs[j].origin?.coord[0]), longitude: Double(tripData.journeys[i].legs[j].origin?.coord[1]) ?? CLLocationCoordinate2D(latitude: -33.8688, longitude: 151.2093))
                     
                     addPin(coordinate: location)
                     
@@ -65,7 +65,7 @@ class MapViewModel: ObservableObject {
                     var stationPlatform: Int = 2
                     var wheelChairAccess: Bool = true
                     
-                    addDetails(coordinate: location, name: stationName, address: stationAddress, interchange: stationInterchange, platforms: stationPlatforms, wheelchair: wheelChairAccess)
+                    addDetails(coordinate: location, name: stationName, address: stationAddress, interchange: stationInterchanges, platforms: stationPlatform, wheelchair: wheelChairAccess)
                 }
             }
         }
