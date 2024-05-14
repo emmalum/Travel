@@ -42,6 +42,7 @@ struct Legs: Decodable {
 
 struct Transportation: Decodable {
     var number: String?
+    var iconID: Int?
 }
 
 struct Origin: Decodable {

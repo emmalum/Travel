@@ -39,12 +39,9 @@ struct ContentView: View {
                             HStack{
                                 Text("Destination:")
                                     .fontWeight(.semibold)
-                                
-//                                Text(tripData.journeys[i].legs[j].destination?.name ?? "No Destination Name")
                                 Text(legs.destination?.name ?? "No Destination Name")
                                 
                             }
-                            //                                Text("\(i), \(j)")
                             Spacer()
                         }
                     
