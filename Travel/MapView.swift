@@ -34,9 +34,21 @@ struct MapView: View {
                                     detailsPopUp = true;
                                     print("Long Pressed")
                                 }
+                            
                             // If the pin is long pressed for 0.1 seconds, then show the details:
+                            //if detailsPopUp {
+                            //PinDetails(stationName: pin.locality, stationAddress: pin.address, platform: pin.platforms, interchange: pin.interchange, wheelChairAccess: pin.wheelchairAccess)
+                            //}
+                        }
+                    }
+                    
+                    // For every pin detail, spawn them on the map.
+                    ForEach(viewModel.detailsArray) { detail in
+                        Annotation(detail.name, coordinate: detail.coordinates) {
+                    
+                            //If the pin is long press for 0.1 seconds, then show the details.
                             if detailsPopUp {
-                                PinDetails(stationName: pin.locality, stationAddress: pin.address, platform: pin.platforms, interchange: pin.interchange, wheelChairAccess: pin.wheelchairAccess)
+                                PinDetails(stationName: detail.name, stationAddress: detail.address, platform: detail.platforms, interchange: detail.interchange, wheelChairAccess: detail.wheelchairAccess)
                             }
                         }
                     }
@@ -52,11 +64,12 @@ struct MapView: View {
                 }
                 
                 // Probably can be changed for when we put in permanent pins.
-                // This is for spawning the map pin in the place that the user has clicked
+                // This is for spawning the map pin and its details in the place that the user has clicked
                 .onTapGesture { tap in
                     if let tapCoordinate = mapReader.convert(tap, from: .local) {
                         Task {
                             await viewModel.addPin(coordinate: tapCoordinate)
+                            await viewModel.addDetails(coordinate: tapCoordinate, name: "Train station", address: "Sydney, NSW, Australia", interchange: 2, platforms: 2, wheelchair: true)
                         }
                         print("Continuing program")
                         detailsPopUp = false;
