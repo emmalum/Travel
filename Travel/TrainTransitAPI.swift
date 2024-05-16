@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class TrainTransitAPI {
+class TrainTransitAPI: ObservableObject {
 
     var urlString: URL = URL(string: "https://api.transport.nsw.gov.au/v1/tp/trip")!
     let APIKey: String = "apikey eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJlTTZKV0drOG9QbHU4aV9Yb2pkYUUtM0VXNWZ0N3NjWXZ3VW90MXpPYlcwIiwiaWF0IjoxNzE0NzE4ODc0fQ.TdHa0PxxbzfmBGEaS-rgRN1arSkgFfMMJxLpAUc5tlM"
@@ -23,6 +23,7 @@ class TrainTransitAPI {
             "authorization": APIKey,
         ]
     }
+    
     
     func getData(currentDate: Date, origin: String, destination: String, type_destination: String) {
         let tripAPIParams = TripAPIParams(date: currentDate, origin: origin, destination: destination, type_destination: type_destination)

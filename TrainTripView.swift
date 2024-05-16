@@ -8,27 +8,44 @@
 import SwiftUI
 
 struct TrainTimeRow: View {
-    let trainTime: TrainTime
+    let leg: Legs
+    
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+    }()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text("\(trainTime.trainLine),")
-                Text("Platform: \(trainTime.platform)")
+                Text("Leaves: ")
             }
+            .padding(4)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+            .padding(.bottom, 3)
+            HStack {
+                Text("\(leg.transportation?.number ?? ""),")
+                Text("Platform: \(leg.origin?.name ?? "")")
+            }
+            .padding(4)
             .foregroundColor(.black)
-            Text("Departing at \(trainTime.departureTime)")
-                .font(.headline)
+            .background(.orange)
+            .cornerRadius(8)
+
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Journey time: \(trainTime.journeyTime)")
+                    Text("Journey time: \(dateFormatter.string(from: leg.origin?.departureTimePlanned ?? Date()))")
                 }
                 .font(.subheadline)
                 .bold()
                 Spacer()
                 VStack(alignment: .trailing, spacing: 4) {
                     Text("Arrival at")
-                    Text(trainTime.arrivalTime)
+                    Text(dateFormatter.string(from: leg.destination?.arrivalTimePlanned ?? Date()))
                 }
                 .font(.headline)
             }
@@ -40,32 +57,28 @@ struct TrainTimeRow: View {
     }
 }
 
-
-
-
-
-struct TrainTime: Identifiable {
-    let id = UUID()
-    let trainLine: String
-    let platform: String
-    let departureTime: String
-    let arrivalTime: String
-    let journeyTime: String
-}
-
 struct TrainTripView: View {
-    let trainTimes: [TrainTime] = [
-        TrainTime(trainLine: "T1", platform: "1", departureTime: "08:00", arrivalTime: "08:35", journeyTime: "35 mins"),
-        TrainTime(trainLine: "T2", platform: "2", departureTime: "08:30", arrivalTime: "09:25", journeyTime: "55 mins"),
-        TrainTime(trainLine: "T8", platform: "3", departureTime: "08:40", arrivalTime: "09:40", journeyTime: "1 hour"),
-        TrainTime(trainLine: "T5", platform: "5", departureTime: "9:00", arrivalTime: "10:00", journeyTime: "1 hour"),
-        TrainTime(trainLine: "T7", platform: "8", departureTime: "9:00", arrivalTime: "10:30", journeyTime: "1 hour 30 mins"),
-        
-    ]
+    @ObservedObject var trainTransitAPI = TrainTransitAPI()
     
     var body: some View {
-        List(trainTimes) { trainTime in
-            TrainTimeRow(trainTime: trainTime)
+        Group {
+            if let legs = trainTransitAPI.currentTransitRequest?.journeys.first?.legs { List {
+                ForEach(legs.indices, id: \.self) { index in
+                    TrainTimeRow(leg: legs[index])
+                }
+            }
+            } else {
+                Text("Loading...")
+                    .onAppear {
+                        let currentDate = Date()
+                        trainTransitAPI.getData(
+                            currentDate: currentDate,
+                            origin: "YourOriginStation",
+                            destination: "YourDestinationStation",
+                            type_destination: "stop"
+                        )
+                    }
+            }
         }
     }
 }

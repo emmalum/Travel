@@ -29,7 +29,7 @@ struct PinDetails: View {
             Text("Address: \(stationAddress)")
             Text("Intergange: \(platform)")
             Text("No. Platforms: \(interchange)")
-            Text("Wheelchair Access: \(wheelChairAccess)")
+            Text("Wheelchair Access: \(wheelChairAccess)" as String)
         }
         .padding()
         .background(Color.white.opacity(0.5))
