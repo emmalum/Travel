@@ -55,7 +55,7 @@ struct LoadingView: View {
             if isLoaded{
                 Color.white
                     .ignoresSafeArea()
-                ContentView()
+                LineView()
             }
         }
     }

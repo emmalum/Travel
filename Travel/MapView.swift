@@ -64,11 +64,12 @@ struct MapView: View {
                 }
                 
                 // Probably can be changed for when we put in permanent pins.
-                // This is for spawning the map pin in the place that the user has clicked
+                // This is for spawning the map pin and its details in the place that the user has clicked
                 .onTapGesture { tap in
                     if let tapCoordinate = mapReader.convert(tap, from: .local) {
                         Task {
                             await viewModel.addPin(coordinate: tapCoordinate)
+                            await viewModel.addDetails(coordinate: tapCoordinate, name: "Train station", address: "Sydney, NSW, Australia", interchange: 2, platforms: 2, wheelchair: true)
                         }
                         print("Continuing program")
                         detailsPopUp = false;

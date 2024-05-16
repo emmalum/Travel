@@ -48,6 +48,7 @@ class MapViewModel: ObservableObject {
         @State var transitParams: TripAPIParams = TripAPIParams(date: Date(), origin: "", destination: "", type_destination: "")
         @State var refresh: Bool = false
         
+        /*
         if let tripData = transitAPI.currentTransitRequest {
             ForEach(0..<tripData.journeys.count, id:\.self) {i in
                 ForEach(0..<tripData.journeys[i].legs.count, id:\.self) { j in
@@ -69,6 +70,9 @@ class MapViewModel: ObservableObject {
                 }
             }
         }
+        */
+        
+        
         self.sydneyCoordinates = CLLocationCoordinate2D(latitude: -33.8688, longitude: 151.2093)
         self.mapCameraPosition = MapCameraPosition.camera(MapCamera(centerCoordinate: sydneyCoordinates, distance: 10000))
     }
@@ -93,14 +97,15 @@ class MapViewModel: ObservableObject {
         }
     }
     
+    
     // This function will add details from the pin onto the "detailsArray"
     // It works in the smae way as the addpin() function but for the information box.
     func addDetails(coordinate: CLLocationCoordinate2D, name: String, address: String, interchange: Int, platforms: Int, wheelchair: Bool) async {
         
-        let newDetails = Details(coordinate: coordinate, name: name, address: address, interchange: interchange, platforms: platforms, wheelchairAccess: wheelchair)
+        let newDetails = Details(coordinates: coordinate, name: name, address: address, interchange: interchange, platforms: platforms, wheelchairAccess: wheelchair)
         detailsArray.append(newDetails)
     }
-    
+     
     // This function just zooms in onto the specific pin on the map.
     // It is only called when pressing on the pin for about 0.1 seconds.
     // Tried to make it so that it only loads the details for the correstponding pin, but I'm unsure on how to do that :/
