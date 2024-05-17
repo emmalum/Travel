@@ -81,7 +81,21 @@ struct LineView: View {
                             .foregroundColor(.t2Colour)
                     }
                 }
-   
+                
+                NavigationLink(
+                    destination: MapView(),
+                    label: {
+                        Text("Check Map")
+                            .font(.headline)
+                            .frame(maxWidth: 150)
+                            .frame(height: 55)
+                            .background(.green)
+                            .clipShape(RoundedRectangle (cornerRadius: 25))
+                            .padding()
+                            .foregroundStyle(.white)
+                    }
+                )
+                
             }
             
         }
@@ -124,5 +138,7 @@ struct StationView: View{
 }
 
 #Preview {
-    LineView()
+    NavigationStack{
+        LineView()
+    }
 }
