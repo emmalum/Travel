@@ -2,10 +2,9 @@
 //  TrainTripView.swift
 //  Travel
 //
-//  Created by Harry Lecoutre on 17/5/2024.
+//  Created by Harry Lecoutre on 10/5/2024.
 //
 
-// TrainTripView.swift
 import SwiftUI
 
 struct TrainTimeRow: View {
