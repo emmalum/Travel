@@ -37,7 +37,6 @@ struct MapView: View {
                         // For every pin detail, spawn them on the map.
                         ForEach(viewModel.testDetails) { detail in
                             Annotation(detail.name, coordinate: detail.coordinates) {
-                                // If the pin is long pressed for 0.1 seconds, then show the details.
                                 if detailsPopUp {
                                     PinDetails(stationName: detail.name, stationAddress: detail.address, platform: detail.platforms, interchange: detail.interchange, wheelChairAccess: detail.wheelchairAccess)
                                 }

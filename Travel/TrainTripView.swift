@@ -14,6 +14,7 @@ struct TrainTimeRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
+                //stack for showing train line/platform and departure
                 Text("\(trainTime.trainLine), Platform: \(trainTime.platform)")
                     .padding(4)
                     .foregroundColor(.black)
@@ -35,6 +36,7 @@ struct TrainTimeRow: View {
                     .font(.headline)
                     .bold()
                 Spacer()
+                //button to save the trip, useful to come back to
                 Button(action: {
                     onSaveTrip(trainTime)
                 }) {
@@ -67,7 +69,7 @@ struct TrainTime: Identifiable, Codable, Equatable {
                lhs.departureTime == rhs.departureTime &&
                lhs.arrivalTime == rhs.arrivalTime &&
                lhs.journeyTime == rhs.journeyTime
-    }
+    } //returning the values
 }
 
 struct TrainTripView: View {
@@ -92,6 +94,7 @@ struct TrainTripView: View {
         }
         .navigationTitle("Train Trips")
         .background(
+            //navigating to savedtripview
             NavigationLink(
                 destination: SavedTripsView(selectedTrainTime: $selectedTrainTime),
                 isActive: Binding(
@@ -107,13 +110,13 @@ struct TrainTripView: View {
     
     private func saveTrip(trainTime: TrainTime) {
         var savedTrips = loadSavedTrips()
-        
+        //ensuring you cant have duplicate saved lines
         if !savedTrips.contains(trainTime) {
             savedTrips.append(trainTime)
             saveTripsToUserDefaults(savedTrips)
         }
     }
-    
+    //code for storing and loading the lines in savedtripsview
     private func loadSavedTrips() -> [TrainTime] {
         if let data = UserDefaults.standard.data(forKey: "savedTrips"),
            let trips = try? JSONDecoder().decode([TrainTime].self, from: data) {

@@ -19,87 +19,87 @@ struct LineView: View {
     @State var var2: String?
     
     var body: some View {
- 
-        ScrollView(.vertical){
-            VStack{
-                Text ("T1 North Shore and Western Line")
-                    .font(.title)
-                    .fontWeight(.semibold)
-                    .foregroundColor(Color("T1Colour"))
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 60.0)
-                
-     
+        NavigationStack {
+            ScrollView(.vertical){
+                VStack{
+                    Text ("T1 North Shore and Western Line")
+                        .font(.title)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color("T1Colour"))
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 60.0)
+                    
+                    
                     ScrollView(.horizontal){
                         HStack{
                             
-                        ForEach(0...2, id: \.self){ _ in
+                            ForEach(0...2, id: \.self){ _ in
+                                Rectangle()
+                                    .frame(width: 100.0, height: 20)
+                                    .foregroundColor(.t1Colour)
+                                
+                                StationView(title:"Berowra")
+                            }
+                        }
+                        
+                        //                        Rectangle()
+                        //                            .frame(width: 100.0, height: 20)
+                        //                            .foregroundColor(.t1Colour)
+                        //                        
+                        //                        StationView(title:"Mount Kuring-gai")
+                        //                        
+                        //                        Rectangle()
+                        //                            .frame(width: 100.0, height: 20)
+                        //                            .foregroundColor(.t1Colour)
+                        //                
+                    }
+                    
+                    
+                    Text ("T2 Inner West and Leppington Line")
+                        .font(.title)
+                        .fontWeight(.semibold)
+                        .foregroundColor(Color("T2Colour"))
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 60.0)
+                    ScrollView(.horizontal){
+                        HStack{
+                            
                             Rectangle()
                                 .frame(width: 100.0, height: 20)
-                                .foregroundColor(.t1Colour)
-                             
-                            StationView(title:"Berowra")
+                                .foregroundColor(.t2Colour)
+                            
+                            StationView(title:"Museum")
+                            
+                            Rectangle()
+                                .frame(width: 100.0, height: 20)
+                                .foregroundColor(.t2Colour)
+                            
+                            StationView(title:"St James")
+                            
+                            Rectangle()
+                                .frame(width: 100.0, height: 20)
+                                .foregroundColor(.t2Colour)
                         }
-                }
-                        
-//                        Rectangle()
-//                            .frame(width: 100.0, height: 20)
-//                            .foregroundColor(.t1Colour)
-//                        
-//                        StationView(title:"Mount Kuring-gai")
-//                        
-//                        Rectangle()
-//                            .frame(width: 100.0, height: 20)
-//                            .foregroundColor(.t1Colour)
-//                
-                }
-                
-           
-                Text ("T2 Inner West and Leppington Line")
-                    .font(.title)
-                    .fontWeight(.semibold)
-                    .foregroundColor(Color("T2Colour"))
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 60.0)
-                ScrollView(.horizontal){
-                    HStack{
-                       
-                        Rectangle()
-                            .frame(width: 100.0, height: 20)
-                            .foregroundColor(.t2Colour)
-                         
-                        StationView(title:"Museum")
-                        
-                        Rectangle()
-                            .frame(width: 100.0, height: 20)
-                            .foregroundColor(.t2Colour)
-                        
-                        StationView(title:"St James")
-                        
-                        Rectangle()
-                            .frame(width: 100.0, height: 20)
-                            .foregroundColor(.t2Colour)
                     }
+                    
+                    NavigationLink(
+                        destination: MapView(),
+                        label: {
+                            Text("Check Map")
+                                .font(.headline)
+                                .frame(maxWidth: 150)
+                                .frame(height: 55)
+                                .background(.green)
+                                .clipShape(RoundedRectangle (cornerRadius: 25))
+                                .padding()
+                                .foregroundStyle(.white)
+                        }
+                    )
+                    
                 }
-                
-                NavigationLink(
-                    destination: MapView(),
-                    label: {
-                        Text("Check Map")
-                            .font(.headline)
-                            .frame(maxWidth: 150)
-                            .frame(height: 55)
-                            .background(.green)
-                            .clipShape(RoundedRectangle (cornerRadius: 25))
-                            .padding()
-                            .foregroundStyle(.white)
-                    }
-                )
                 
             }
-            
         }
-       
     }
 }
 
