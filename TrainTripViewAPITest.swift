@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TrainTimeRow: View {
+struct TrainTimeRowAPITest: View {
     let leg: Legs
     
     private let dateFormatter: DateFormatter = {
@@ -19,14 +19,6 @@ struct TrainTimeRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text("Leaves: ")
-            }
-            .padding(4)
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(8)
-            .padding(.bottom, 3)
             HStack {
                 Text("\(leg.transportation?.number ?? ""),")
                 Text("Platform: \(leg.origin?.name ?? "")")
@@ -57,14 +49,14 @@ struct TrainTimeRow: View {
     }
 }
 
-struct TrainTripView: View {
+struct TrainTripViewAPITest: View {
     @ObservedObject var trainTransitAPI = TrainTransitAPI()
     
     var body: some View {
         Group {
             if let legs = trainTransitAPI.currentTransitRequest?.journeys.first?.legs { List {
                 ForEach(legs.indices, id: \.self) { index in
-                    TrainTimeRow(leg: legs[index])
+                    TrainTimeRowAPITest(leg: legs[index])
                 }
             }
             } else {
@@ -83,7 +75,7 @@ struct TrainTripView: View {
     }
 }
 
-struct TrainTripView_Previews: PreviewProvider {
+struct TrainTripViewAPITest_Previews: PreviewProvider {
     static var previews: some View {
         TrainTripView()
     }

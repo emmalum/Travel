@@ -23,7 +23,9 @@
 		9BDBC5DA2BE64E0F0064B47E /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDBC5D92BE64E0F0064B47E /* MapView.swift */; };
 		9BE4FC672BE9CD7D004A867A /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE4FC662BE9CD7D004A867A /* MapViewModel.swift */; };
 		9BE4FC692BE9CEDE004A867A /* MapPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE4FC682BE9CEDE004A867A /* MapPin.swift */; };
-		F78CA78C2BEDAA3B00ABE757 /* TrainTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78CA78B2BEDAA3B00ABE757 /* TrainTripView.swift */; };
+		F787C1BF2BF6E564009E3301 /* TrainTripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F787C1BE2BF6E564009E3301 /* TrainTripView.swift */; };
+		F787C1C12BF6E58A009E3301 /* SavedTripsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F787C1C02BF6E58A009E3301 /* SavedTripsView.swift */; };
+		F78CA78C2BEDAA3B00ABE757 /* TrainTripViewAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78CA78B2BEDAA3B00ABE757 /* TrainTripViewAPITest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +47,9 @@
 		9BDBC5D92BE64E0F0064B47E /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9BE4FC662BE9CD7D004A867A /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		9BE4FC682BE9CEDE004A867A /* MapPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPin.swift; sourceTree = "<group>"; };
-		F78CA78B2BEDAA3B00ABE757 /* TrainTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrainTripView.swift; path = ../TrainTripView.swift; sourceTree = "<group>"; };
+		F787C1BE2BF6E564009E3301 /* TrainTripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainTripView.swift; sourceTree = "<group>"; };
+		F787C1C02BF6E58A009E3301 /* SavedTripsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SavedTripsView.swift; path = ../SavedTripsView.swift; sourceTree = "<group>"; };
+		F78CA78B2BEDAA3B00ABE757 /* TrainTripViewAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TrainTripViewAPITest.swift; path = ../TrainTripViewAPITest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +96,9 @@
 				9BDBC5D92BE64E0F0064B47E /* MapView.swift */,
 				9BE4FC662BE9CD7D004A867A /* MapViewModel.swift */,
 				9BE4FC682BE9CEDE004A867A /* MapPin.swift */,
-				F78CA78B2BEDAA3B00ABE757 /* TrainTripView.swift */,
+				F78CA78B2BEDAA3B00ABE757 /* TrainTripViewAPITest.swift */,
+				F787C1BE2BF6E564009E3301 /* TrainTripView.swift */,
+				F787C1C02BF6E58A009E3301 /* SavedTripsView.swift */,
 				9B3FF6212BEC77E400DDBD22 /* PinDetails.swift */,
 				2E4C1AE12BE0988700DAF0FC /* Assets.xcassets */,
 				2E4C1AE32BE0988700DAF0FC /* Preview Content */,
@@ -184,12 +190,14 @@
 				2EFEA81E2BE3432A0062357A /* TrainTransitAPI.swift in Sources */,
 				2EB6DE5F2BE4A21E00053E9A /* ButtonView.swift in Sources */,
 				9B8502762BE45FA200C52A62 /* SettingsView.swift in Sources */,
-				F78CA78C2BEDAA3B00ABE757 /* TrainTripView.swift in Sources */,
+				F787C1BF2BF6E564009E3301 /* TrainTripView.swift in Sources */,
+				F78CA78C2BEDAA3B00ABE757 /* TrainTripViewAPITest.swift in Sources */,
 				9B8502782BE45FB200C52A62 /* LoadingView.swift in Sources */,
 				2E4C1AE02BE0988500DAF0FC /* ContentView.swift in Sources */,
 				2EB6DE612BE9C21E00053E9A /* LineView.swift in Sources */,
 				9B3FF6222BEC77E400DDBD22 /* PinDetails.swift in Sources */,
 				2E4C1ADE2BE0988500DAF0FC /* TravelAPIApp.swift in Sources */,
+				F787C1C12BF6E58A009E3301 /* SavedTripsView.swift in Sources */,
 				9BDBC5DA2BE64E0F0064B47E /* MapView.swift in Sources */,
 				2E3DFBC52BEDAD0F0014D984 /* TestView.swift in Sources */,
 				2EFEA8222BE467560062357A /* DateFormatter.swift in Sources */,
