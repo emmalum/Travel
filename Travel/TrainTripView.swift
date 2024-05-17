@@ -74,34 +74,35 @@ struct TrainTripView: View {
     ]
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(trainTimes) { trainTime in
-                    TrainTimeRow(trainTime: trainTime) { selectedTrainTime in
-                        self.selectedTrainTime = selectedTrainTime
-                    }
+        List {
+            ForEach(trainTimes) { trainTime in
+                TrainTimeRow(trainTime: trainTime) { selectedTrainTime in
+                    self.selectedTrainTime = selectedTrainTime
                 }
             }
-            .navigationTitle("Train Trips")
-            .background(
-                NavigationLink(
-                    destination: SavedTripsView(selectedTrainTime: $selectedTrainTime),
-                    isActive: Binding(
-                        get: { self.selectedTrainTime != nil },
-                        set: { if !$0 { self.selectedTrainTime = nil } }
-                    )
-                ) {
-                    EmptyView()
-                }
-                .hidden()
-            )
         }
+        .navigationTitle("Train Trips")
+        .background(
+            NavigationLink(
+                destination: SavedTripsView(selectedTrainTime: $selectedTrainTime),
+                isActive: Binding(
+                    get: { self.selectedTrainTime != nil },
+                    set: { if !$0 { self.selectedTrainTime = nil } }
+                )
+            ) {
+                EmptyView()
+            }
+            .hidden()
+        )
     }
 }
 
 struct TrainTripView_Previews: PreviewProvider {
     static var previews: some View {
-        TrainTripView()
-            .previewLayout(.sizeThatFits)
+        NavigationView {
+            TrainTripView()
+        }
+        .previewLayout(.sizeThatFits)
     }
 }
+
