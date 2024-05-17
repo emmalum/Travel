@@ -27,8 +27,8 @@ struct PinDetails: View {
         VStack(alignment: .leading, spacing: 6){
             Text("Station name: \(stationName)")
             Text("Address: \(stationAddress)")
-            Text("Intergange: \(platform)")
-            Text("No. Platforms: \(interchange)")
+            Text("Interchange: \(interchange)")
+            Text("No. Platforms: \(platform)")
             Text("Wheelchair Access: \(wheelChairAccess)")
         }
         .padding()
@@ -37,5 +37,5 @@ struct PinDetails: View {
 }
 
 #Preview {
-    PinDetails(stationName: "Station 6", stationAddress: "Somewhere", platform: 1, interchange: 2, wheelChairAccess: false)
+    PinDetails(stationName: "Example", stationAddress: "Somewhere", platform: 1, interchange: 2, wheelChairAccess: false)
 }

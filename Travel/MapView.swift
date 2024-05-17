@@ -21,7 +21,8 @@ struct MapView: View {
                 Map(position: $viewModel.mapCameraPosition, scope: locationSpace) {
                     
                     // For each pin, spawn them on the map:
-                    ForEach(viewModel.pinArray) { pin in
+                    //ForEach(viewModel.pinArray) { pin in
+                    ForEach(viewModel.testPin){ pin in
                         Annotation(pin.locality, coordinate: pin.coordinates) {
                             
                             // Place the MapPin from the coordinates above.
@@ -43,7 +44,8 @@ struct MapView: View {
                     }
                     
                     // For every pin detail, spawn them on the map.
-                    ForEach(viewModel.detailsArray) { detail in
+                    //ForEach(viewModel.detailsArray) { detail in
+                    ForEach(viewModel.testDetails){ detail in
                         Annotation(detail.name, coordinate: detail.coordinates) {
                     
                             //If the pin is long press for 0.1 seconds, then show the details.
