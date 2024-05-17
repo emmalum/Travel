@@ -13,32 +13,23 @@ struct SavedTripsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
+                Spacer()
+                Text("Saved Trips")
+                    .font(.largeTitle)
+                Spacer()
+            }
+            HStack {
                 if let trainTime = selectedTrainTime {
-                    Text("Saved Trips")
-                    HStack {
-                        Text("Line: \(trainTime.trainLine)")
-                            .padding(4)
-                            .foregroundColor(.black)
-                            .background(Color.orange)
-                            .cornerRadius(8)
-                        Spacer()
-                        Text("Platform: \(trainTime.platform)")
-                            .padding(4)
-                            .foregroundColor(.black)
-                            .background(Color.orange)
-                            .cornerRadius(8)
-                    }
-                    Button(action: {
-                        saveTrip(trainTime)
-                    }) {
-                        Spacer()
-                        Text("Save Trip")
-                            .padding(8)
-                            .foregroundColor(.white)
-                            .background(Color.blue)
-                            .cornerRadius(8)
-                    }
-                    Spacer()
+                    Text("Line: \(trainTime.trainLine)")
+                        .padding(4)
+                        .foregroundColor(.black)
+                        .background(Color.orange)
+                        .cornerRadius(8)
+                    Text("Platform: \(trainTime.platform)")
+                        .padding(4)
+                        .foregroundColor(.black)
+                        .background(Color.orange)
+                        .cornerRadius(8)
                 } else {
                     Spacer()
                     Text("No trip selected")
@@ -46,17 +37,17 @@ struct SavedTripsView: View {
                         .foregroundColor(.white)
                         .background(Color.blue)
                         .cornerRadius(8)
+                    Spacer()
                 }
-                Spacer()
             }
             Spacer()
-            
             List(savedTrips) { savedTrip in
                 VStack(alignment: .leading) {
                     Text("Line: \(savedTrip.trainLine)")
                     Text("Platform: \(savedTrip.platform)")
                 }
             }
+            .padding()
         }
         .padding()
     }
@@ -69,5 +60,6 @@ struct SavedTripsView: View {
 struct SavedTripsView_Previews: PreviewProvider {
     static var previews: some View {
         SavedTripsView(selectedTrainTime: .constant(nil))
+            .previewLayout(.sizeThatFits)
     }
 }

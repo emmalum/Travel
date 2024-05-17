@@ -20,7 +20,7 @@ struct TrainTimeRow: View {
                     .background(Color.orange)
                     .cornerRadius(8)
                 Spacer()
-                Text("Departure: ")
+                Text("Departure: \(trainTime.departureTime)")
                     .bold()
             }
             
@@ -53,7 +53,6 @@ struct TrainTimeRow: View {
     }
 }
 
-
 struct TrainTime: Identifiable {
     let id = UUID()
     let trainLine: String
@@ -64,7 +63,6 @@ struct TrainTime: Identifiable {
 }
 
 struct TrainTripView: View {
-    @State private var isShowingSavedTrips = false
     @State private var selectedTrainTime: TrainTime? // Track the selected TrainTime
     
     let trainTimes: [TrainTime] = [
@@ -81,21 +79,29 @@ struct TrainTripView: View {
                 ForEach(trainTimes) { trainTime in
                     TrainTimeRow(trainTime: trainTime) { selectedTrainTime in
                         self.selectedTrainTime = selectedTrainTime
-                        self.isShowingSavedTrips = true
                     }
                 }
             }
             .navigationTitle("Train Trips")
-            .sheet(isPresented: $isShowingSavedTrips) {
-                SavedTripsView(selectedTrainTime: self.$selectedTrainTime)
-            }
+            .background(
+                NavigationLink(
+                    destination: SavedTripsView(selectedTrainTime: $selectedTrainTime),
+                    isActive: Binding(
+                        get: { self.selectedTrainTime != nil },
+                        set: { if !$0 { self.selectedTrainTime = nil } }
+                    )
+                ) {
+                    EmptyView()
+                }
+                .hidden()
+            )
         }
     }
 }
 
-
 struct TrainTripView_Previews: PreviewProvider {
     static var previews: some View {
         TrainTripView()
+            .previewLayout(.sizeThatFits)
     }
 }
