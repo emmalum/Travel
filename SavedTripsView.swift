@@ -9,7 +9,7 @@ import SwiftUI
 struct SavedTripsView: View {
     @Binding var selectedTrainTime: TrainTime?
     @State private var savedTrips: [TrainTime] = []
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -18,42 +18,47 @@ struct SavedTripsView: View {
                     .font(.largeTitle)
                 Spacer()
             }
-            HStack {
-                if let trainTime = selectedTrainTime {
-                    Text("Line: \(trainTime.trainLine)")
-                        .padding(4)
-                        .foregroundColor(.black)
-                        .background(Color.orange)
-                        .cornerRadius(8)
-                    Text("Platform: \(trainTime.platform)")
-                        .padding(4)
-                        .foregroundColor(.black)
-                        .background(Color.orange)
-                        .cornerRadius(8)
-                } else {
-                    Spacer()
-                    Text("No trip selected")
-                        .padding(8)
-                        .foregroundColor(.white)
-                        .background(Color.blue)
-                        .cornerRadius(8)
-                    Spacer()
-                }
-            }
-            Spacer()
-            List(savedTrips) { savedTrip in
-                VStack(alignment: .leading) {
-                    Text("Line: \(savedTrip.trainLine)")
-                    Text("Platform: \(savedTrip.platform)")
+            List {
+                ForEach(savedTrips) { savedTrip in
+                    VStack(alignment: .leading) {
+                        Text("Line: \(savedTrip.trainLine)")
+                        Text("Platform: \(savedTrip.platform)")
+                        
+                    }
+                    .contextMenu {
+                        Button(action: {
+                            deleteSavedTrip(savedTrip)
+                        }) {
+                            Text("Delete")
+                            Image(systemName: "trash")
+                        }
+                    }
                 }
             }
             .padding()
         }
         .padding()
+        .onAppear(perform: loadSavedTrips)
     }
-    
-    private func saveTrip(_ trip: TrainTime) {
-        savedTrips.append(trip)
+
+    private func loadSavedTrips() {
+        if let data = UserDefaults.standard.data(forKey: "savedTrips"),
+           let trips = try? JSONDecoder().decode([TrainTime].self, from: data) {
+            savedTrips = trips
+        }
+    }
+
+    private func deleteSavedTrip(_ trip: TrainTime) {
+        if let index = savedTrips.firstIndex(where: { $0.id == trip.id }) {
+            savedTrips.remove(at: index)
+            saveTripsToUserDefaults()
+        }
+    }
+
+    private func saveTripsToUserDefaults() {
+        if let encoded = try? JSONEncoder().encode(savedTrips) {
+            UserDefaults.standard.set(encoded, forKey: "savedTrips")
+        }
     }
 }
 

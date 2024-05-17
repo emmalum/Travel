@@ -53,13 +53,21 @@ struct TrainTimeRow: View {
     }
 }
 
-struct TrainTime: Identifiable {
+struct TrainTime: Identifiable, Codable, Equatable {
     let id = UUID()
     let trainLine: String
     let platform: String
     let departureTime: String
     let arrivalTime: String
     let journeyTime: String
+    
+    static func ==(lhs: TrainTime, rhs: TrainTime) -> Bool {
+        return lhs.trainLine == rhs.trainLine &&
+               lhs.platform == rhs.platform &&
+               lhs.departureTime == rhs.departureTime &&
+               lhs.arrivalTime == rhs.arrivalTime &&
+               lhs.journeyTime == rhs.journeyTime
+    }
 }
 
 struct TrainTripView: View {
@@ -78,6 +86,7 @@ struct TrainTripView: View {
             ForEach(trainTimes) { trainTime in
                 TrainTimeRow(trainTime: trainTime) { selectedTrainTime in
                     self.selectedTrainTime = selectedTrainTime
+                    saveTrip(trainTime: selectedTrainTime)
                 }
             }
         }
@@ -94,6 +103,29 @@ struct TrainTripView: View {
             }
             .hidden()
         )
+    }
+    
+    private func saveTrip(trainTime: TrainTime) {
+        var savedTrips = loadSavedTrips()
+        
+        if !savedTrips.contains(trainTime) {
+            savedTrips.append(trainTime)
+            saveTripsToUserDefaults(savedTrips)
+        }
+    }
+    
+    private func loadSavedTrips() -> [TrainTime] {
+        if let data = UserDefaults.standard.data(forKey: "savedTrips"),
+           let trips = try? JSONDecoder().decode([TrainTime].self, from: data) {
+            return trips
+        }
+        return []
+    }
+    
+    private func saveTripsToUserDefaults(_ trips: [TrainTime]) {
+        if let data = try? JSONEncoder().encode(trips) {
+            UserDefaults.standard.set(data, forKey: "savedTrips")
+        }
     }
 }
 
